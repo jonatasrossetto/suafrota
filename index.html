@@ -11,13 +11,17 @@
     <h3 id="displayPosition">position</h3>
     <script>
         let displayPosition = document.getElementById('displayPosition');
-        let position = navigator.geolocation.getCurrentPosition((posicao)=>{
-            console.log('latitude: '+posicao.coords.latitude);
-            console.log('longitude: '+posicao.coords.longitude);
-            let texto='latitude: '+posicao.coords.latitude+' longitude: '+posicao.coords.longitude;
-            displayPosition.innerText=texto;
-        });
-        
+        let texto ='';
+        let index=0;
+        setInterval(() => {
+            navigator.geolocation.getCurrentPosition((posicao)=>{
+                texto=texto+'index: '+index+' latitude: '+posicao.coords.latitude+' longitude: '+posicao.coords.longitude+'\n';
+                displayPosition.innerText=texto;
+                index=index+1;
+            });
+            
+        }, 3000);
+
     </script>
 </body>
 </html>
