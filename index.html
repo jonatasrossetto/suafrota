@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Frota Mobile</title>
+</head>
+<body>
+    <h1>Sua Frota</h1>
+    <h3 id="displayPosition">position</h3>
+    <script>
+        let displayPosition = document.getElementById('displayPosition');
+        let position = navigator.geolocation.getCurrentPosition((posicao)=>{
+            console.log('latitude: '+posicao.coords.latitude);
+            console.log('longitude: '+posicao.coords.longitude);
+            let texto='latitude: '+posicao.coords.latitude+' longitude: '+posicao.coords.longitude;
+            displayPosition.innerText=texto;
+        });
+        
+    </script>
+</body>
+</html>
