@@ -11,16 +11,24 @@
     <h3 id="displayPosition">position</h3>
     <script>
         let displayPosition = document.getElementById('displayPosition');
+        let dadosColetados=[];
+        let intervalId;
         let texto ='';
-        let index=0;
         setInterval(() => {
             navigator.geolocation.getCurrentPosition((posicao)=>{
-                texto=texto+'index: '+index+' latitude: '+posicao.coords.latitude+' longitude: '+posicao.coords.longitude+'\n';
+                let now = new Date();
+                let lat = posicao.coords.latitude;
+                let long = posicao.coords.longitude;
+                dadosColetados.push({
+                    time: now,
+                    latitude: lat,
+                    longitude: long
+                })
+                texto=texto+'time:'+now+'latitude: '+lat+' longitude: '+long+'\n';
                 displayPosition.innerText=texto;
-                index=index+1;
             });
             
-        }, 3000);
+        }, 1000);
 
     </script>
 </body>
