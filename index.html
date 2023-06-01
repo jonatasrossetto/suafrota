@@ -23,8 +23,7 @@
 
         async function init(){
             for (let index = 1; index < 20; index++){
-                await delay(2000);
-                console.log(index);
+                await delay(5000);
                 await navigator.geolocation.getCurrentPosition((posicao)=>{
                     let now = new Date();
                     let lat = posicao.coords.latitude;
