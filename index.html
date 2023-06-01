@@ -14,21 +14,40 @@
         let dadosColetados=[];
         let intervalId;
         let texto ='';
-        setInterval(() => {
-            navigator.geolocation.getCurrentPosition((posicao)=>{
-                let now = new Date();
-                let lat = posicao.coords.latitude;
-                let long = posicao.coords.longitude;
-                dadosColetados.push({
-                    time: now,
-                    latitude: lat,
-                    longitude: long
-                })
-                texto=texto+'time:'+now+'latitude: '+lat+' longitude: '+long+'\n';
-                displayPosition.innerText=texto;
+        
+        function delay(milliseconds){
+            return new Promise(resolve => {
+                setTimeout(resolve, milliseconds);
             });
-            
-        }, 1000);
+        }
+
+        async function init(){
+            for (let index = 1; index < 20; index++){
+                await delay(2000);
+                console.log(index);
+                await navigator.geolocation.getCurrentPosition((posicao)=>{
+                    let now = new Date();
+                    let lat = posicao.coords.latitude;
+                    let long = posicao.coords.longitude;
+                    dadosColetados.push({
+                        time: now,
+                        latitude: lat,
+                        longitude: long
+                    })
+                    texto=texto+'\ntime:'+now+'\nlatitude: '+lat+'   longitude: '+long+'\n';
+                    displayPosition.innerText=texto;
+                });
+            }    
+        }
+
+        init();
+        
+
+        
+        
+        
+
+        
 
     </script>
 </body>
