@@ -49,9 +49,12 @@
         }
 
         async function runLoop() {
+            let inc = 0;
             while (true) {
+                inc = inc + 1;
                 console.log('runLoop');
-                await returnPosition(1000);
+                await returnPosition(5000);
+                displayPosition.innerText = `iteração: ${inc}`;
                 if (stop) { break }
             }
         }
