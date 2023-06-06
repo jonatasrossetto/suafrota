@@ -1,53 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sua Frota Mobile</title>
 </head>
+
 <body>
     <h1>Sua Frota</h1>
+    <button id="btnStart">Start</button>
+    <button id="btnStop">Stop</button>
     <h3 id="displayPosition">position</h3>
     <script>
+        let btnStart = document.getElementById('btnStart');
+        let btnStop = document.getElementById('btnStop');
+        let stop = false;
+
+
+
         let displayPosition = document.getElementById('displayPosition');
-        let dadosColetados=[];
+        let dadosColetados = [];
         let intervalId;
-        let texto ='';
-        
-        function delay(milliseconds){
+        let texto = '';
+
+        function delay(milliseconds) {
             return new Promise(resolve => {
                 setTimeout(resolve, milliseconds);
             });
         }
 
-        async function init(){
-            for (let index = 1; index < 20; index++){
-                await delay(5000);
-                await navigator.geolocation.getCurrentPosition((posicao)=>{
-                    let now = new Date();
-                    let lat = posicao.coords.latitude;
-                    let long = posicao.coords.longitude;
-                    dadosColetados.push({
-                        time: now,
-                        latitude: lat,
-                        longitude: long
-                    })
-                    texto=texto+'\ntime:'+now+'\nlatitude: '+lat+'   longitude: '+long+'\n';
-                    displayPosition.innerText=texto;
-                });
-            }    
+        async function returnPosition(timeDelay) {
+            console.log('return position');
+            await delay(timeDelay);
+            await navigator.geolocation.getCurrentPosition((posicao) => {
+                let now = new Date();
+                let lat = posicao.coords.latitude;
+                let long = posicao.coords.longitude;
+                dadosColetados.push({
+                    time: now,
+                    latitude: lat,
+                    longitude: long
+                })
+                texto = texto + '\ntime:' + now + '\nlatitude: ' + lat + '   longitude: ' + long + '\n';
+
+            });
         }
 
-        init();
-        
+        async function runLoop() {
+            while (true) {
+                console.log('runLoop');
+                await returnPosition(1000);
+                if (stop) { break }
+            }
+        }
 
-        
-        
-        
 
-        
+        btnStart.onclick = () => {
+            console.log('start');
+            runLoop();
+        }
+
+        btnStop.onclick = () => {
+            console.log('stop');
+            stop = true;
+            displayPosition.innerText = texto;
+        }
+
+
+
+
+
+
+
+
 
     </script>
 </body>
+
 </html>
