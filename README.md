@@ -15,3 +15,11 @@ Temos 3 sub-sistemas a serem desenvolvidos:
 1. página web para coleta da geolocalização com o smartphone
 2. servidor para gerenciar armazenamento e recuperação dos dados de geolocalização
 3. página web para apresentação de relatórios
+
+---
+
+updates em 13/06/2023
+
+1. adicionado o uso de uma api_key para limitar o acesso do backend
+2. separando o frontend entre pag de login e pag de rastreio
+3. adicionado o envio e o recebimento de dados para/de uma API

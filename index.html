@@ -9,19 +9,24 @@
 </head>
 
 <body>
-    <h1>Sua Frota</h1>
-    <input type="password" name="apikey" id="inputApiKey">
-    <button id="btnStoreApiKey">Store Api Key</button>
+    <div id="loginDiv">
+        <h1>Sua Frota</h1>
+        <input type="password" name="apikey" id="inputApiKey">
+        <button id="btnStoreApiKey">Store Api Key</button>
+    </div>
+    <div id="trackDiv" style="display: none;">
+        <h1>Sua Frota</h1>
+        <br><br>
+        <button id="btnStart">Start</button>
+        <button id="btnStop">Stop</button>
+        <button id="btnSend">Send</button>
+        <button id="btnReceive">Receive</button>
+        <h3>Status Message:</h3>
+        <h3 id="displayStatus">...</h3>
+        <h3>Display Position:</h3>
+        <h3 id="displayPosition">...</h3>
 
-    <br><br>
-    <button id="btnStart">Start</button>
-    <button id="btnStop">Stop</button>
-    <button id="btnSend">Send</button>
-    <button id="btnReceive">Receive</button>
-    <h3>Status Message:</h3>
-    <h3 id="displayStatus">...</h3>
-    <h3>Display Position:</h3>
-    <h3 id="displayPosition">...</h3>
+    </div>
 
     <script src="index.js"></script>
 

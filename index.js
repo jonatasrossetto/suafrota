@@ -179,6 +179,9 @@ let btnStop = document.getElementById('btnStop');
 let btnSend = document.getElementById('btnSend');
 let btnReceive = document.getElementById('btnReceive');
 
+let loginDiv = document.getElementById('loginDiv');
+let trackDiv = document.getElementById('trackDiv');
+
 let displayStatus = document.getElementById('displayStatus');
 let displayPosition = document.getElementById('displayPosition');
 
@@ -251,7 +254,7 @@ btnSend.addEventListener('click', () => {
       'Content-Type': 'application/json',
       Authorization: apiKey,
     },
-    body: JSON.stringify(dadosJson),
+    body: JSON.stringify(dadosColetados),
   })
     .then((response) => {
       return response.json();
@@ -281,5 +284,8 @@ btnReceive.addEventListener('click', () => {
 btnStoreApiKey.addEventListener('click', () => {
   console.log('store api key clicked');
   apiKey = inputApiKey.value;
+  inputApiKey.value = '';
   displayStatus.innerText = apiKey;
+  loginDiv.style.display = 'none';
+  trackDiv.style.display = 'block';
 });
