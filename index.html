@@ -10,95 +10,21 @@
 
 <body>
     <h1>Sua Frota</h1>
+    <input type="password" name="apikey" id="inputApiKey">
+    <button id="btnStoreApiKey">Store Api Key</button>
+
+    <br><br>
     <button id="btnStart">Start</button>
     <button id="btnStop">Stop</button>
+    <button id="btnSend">Send</button>
+    <button id="btnReceive">Receive</button>
     <h3>Status Message:</h3>
     <h3 id="displayStatus">...</h3>
     <h3>Display Position:</h3>
     <h3 id="displayPosition">...</h3>
 
-    <script>
-        let btnStart = document.getElementById('btnStart');
-        let btnStop = document.getElementById('btnStop');
-        let displayStatus = document.getElementById('displayStatus');
-        let stop = false;
+    <script src="index.js"></script>
 
-
-
-        let displayPosition = document.getElementById('displayPosition');
-        let dadosColetados = [];
-        let intervalId;
-        // let texto = '';
-
-        function delay(milliseconds) {
-            return new Promise(resolve => {
-                setTimeout(resolve, milliseconds);
-            });
-        }
-
-        async function returnPosition(timeDelay) {
-            console.log('return position');
-            await delay(timeDelay);
-            await navigator.geolocation.getCurrentPosition((posicao) => {
-                let now = new Date();
-                let lat = posicao.coords.latitude;
-                let long = posicao.coords.longitude;
-                dadosColetados.push({
-                    time: now,
-                    latitude: lat,
-                    longitude: long
-                })
-                // texto = texto + '\ntime:' + now + '\nlatitude: ' + lat + '   longitude: ' + long + '\n';
-            });
-            displayStatus.innerText = 'return position qtd dados coletados: ' + dadosColetados.length;
-        }
-
-        async function requestScreenWakeLock() {
-            let wakelock = await navigator.wakeLock.request("screen");
-            // displayStatus.innerText = (wakelock != null);
-        }
-
-        async function runLoop() {
-            requestScreenWakeLock();
-            let inc = 0;
-            while (true) {
-                if (stop) { break }
-                inc = inc + 1;
-                console.log('runLoop');
-                await returnPosition(5000);
-                // displayPosition.innerText = `iteração: ${inc}`;
-            }
-        }
-
-
-        btnStart.onclick = () => {
-            console.log('start');
-            runLoop();
-        }
-
-        btnStop.onclick = async () => {
-            let texto = '';
-            stop = true;
-            // await delay(5000);
-            console.log('stop');
-            console.log('qtd dados coletados: ' + dadosColetados.length);
-            // dadosColetados.forEach(element => {
-            //     texto = texto + '\ntime:' + element.time + '\nlatitude: ' + element.latitude + '   longitude: ' + element.longitude + '\n';
-            //     displayPosition.innerText = texto;
-            // })
-            displayPosition.innerText = JSON.stringify(dadosColetados);
-
-        }
-
-
-
-
-
-
-
-
-
-    </script>
 </body>
 
 </html>
