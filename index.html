@@ -12,8 +12,10 @@
     <h1>Sua Frota</h1>
     <button id="btnStart">Start</button>
     <button id="btnStop">Stop</button>
-    <h3 id="displayStatus">Status message</h3>
-    <h3 id="displayPosition">position</h3>
+    <h3>Status Message:</h3>
+    <h3 id="displayStatus">...</h3>
+    <h3>Display Position:</h3>
+    <h3 id="displayPosition">...</h3>
 
     <script>
         let btnStart = document.getElementById('btnStart');
@@ -26,7 +28,7 @@
         let displayPosition = document.getElementById('displayPosition');
         let dadosColetados = [];
         let intervalId;
-        let texto = '';
+        // let texto = '';
 
         function delay(milliseconds) {
             return new Promise(resolve => {
@@ -46,25 +48,25 @@
                     latitude: lat,
                     longitude: long
                 })
-                texto = texto + '\ntime:' + now + '\nlatitude: ' + lat + '   longitude: ' + long + '\n';
-
+                // texto = texto + '\ntime:' + now + '\nlatitude: ' + lat + '   longitude: ' + long + '\n';
             });
+            displayStatus.innerText = 'return position qtd dados coletados: ' + dadosColetados.length;
         }
 
         async function requestScreenWakeLock() {
             let wakelock = await navigator.wakeLock.request("screen");
-            displayStatus.innerText = (wakelock != null);
+            // displayStatus.innerText = (wakelock != null);
         }
 
         async function runLoop() {
             requestScreenWakeLock();
             let inc = 0;
             while (true) {
+                if (stop) { break }
                 inc = inc + 1;
                 console.log('runLoop');
                 await returnPosition(5000);
-                displayPosition.innerText = `iteração: ${inc}`;
-                if (stop) { break }
+                // displayPosition.innerText = `iteração: ${inc}`;
             }
         }
 
@@ -74,10 +76,17 @@
             runLoop();
         }
 
-        btnStop.onclick = () => {
-            console.log('stop');
+        btnStop.onclick = async () => {
+            let texto = '';
             stop = true;
-            displayPosition.innerText = texto;
+            // await delay(5000);
+            console.log('stop');
+            console.log('qtd dados coletados: ' + dadosColetados.length);
+            dadosColetados.forEach(element => {
+                texto = texto + '\ntime:' + element.time + '\nlatitude: ' + element.latitude + '   longitude: ' + element.longitude + '\n';
+                displayPosition.innerText = texto;
+            })
+
         }
 
 
