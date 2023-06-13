@@ -261,6 +261,7 @@ btnSend.addEventListener('click', () => {
     })
     .then((data) => {
       console.log(data.m);
+      displayStatus.innerText = data.m;
     });
 });
 
@@ -278,6 +279,7 @@ btnReceive.addEventListener('click', () => {
     })
     .then((data) => {
       console.log(data);
+      displayStatus.innerText = data;
     });
 });
 
