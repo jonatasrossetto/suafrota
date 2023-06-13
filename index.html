@@ -82,10 +82,11 @@
             // await delay(5000);
             console.log('stop');
             console.log('qtd dados coletados: ' + dadosColetados.length);
-            dadosColetados.forEach(element => {
-                texto = texto + '\ntime:' + element.time + '\nlatitude: ' + element.latitude + '   longitude: ' + element.longitude + '\n';
-                displayPosition.innerText = texto;
-            })
+            // dadosColetados.forEach(element => {
+            //     texto = texto + '\ntime:' + element.time + '\nlatitude: ' + element.latitude + '   longitude: ' + element.longitude + '\n';
+            //     displayPosition.innerText = texto;
+            // })
+            displayPosition.innerText = JSON.stringify(dadosColetados);
 
         }
 
