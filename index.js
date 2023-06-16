@@ -120,10 +120,10 @@ btnSend.addEventListener('click', () => {
       L: dadosColetados,
     },
   };
-  console.log(messageBody.data.L.length);
-  console.log(JSON.stringify(messageBody));
+
+  // console.log(messageBody.data.L.length);
+  // console.log(JSON.stringify(messageBody));
   fetch(fetchAddress + '/armazena', {
-    referrerPolicy: 'unsafe_url',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -140,23 +140,23 @@ btnSend.addEventListener('click', () => {
     });
 });
 
-btnReceive.addEventListener('click', () => {
-  console.log('receive clicked');
-  fetch(fetchAddress + '/devolvedados', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: apiKey,
-    },
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-      displayStatus.innerText = data;
-    });
-});
+// btnReceive.addEventListener('click', () => {
+//   console.log('receive clicked');
+//   fetch(fetchAddress + '/devolvedados', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Authorization: apiKey,
+//     },
+//   })
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .then((data) => {
+//       console.log(data);
+//       displayStatus.innerText = data;
+//     });
+// });
 
 btnStoreApiKey.addEventListener('click', () => {
   console.log('store api key clicked');
