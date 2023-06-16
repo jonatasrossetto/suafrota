@@ -123,6 +123,7 @@ btnSend.addEventListener('click', () => {
   console.log(messageBody.data.L.length);
   console.log(JSON.stringify(messageBody));
   fetch(fetchAddress + '/armazena', {
+    referrerPolicy: 'unsafe_url',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
